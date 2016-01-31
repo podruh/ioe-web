@@ -22,13 +22,11 @@
 				<div id="mainChart">        
 					<div>
 					<h2>Souhrn</h2>
-             <div id="range">
              <form>
                 <select id="dateSelect" onchange="ChangeDate()">
               
                 </select>
               </form>
-             </div>
 						<canvas id="mainChartCanvas"></canvas>
             <div id="chartjs-tooltip"></div>
 					</div>

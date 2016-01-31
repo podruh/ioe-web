@@ -101,9 +101,14 @@ h2{
 	height: 20px;
 }
 #range{
-width: 10%;
+
+}
+
+form{
+width:100px;
 margin:10px auto;
 }
 select{
-
+width:100%;
+margin: 0px auto;
 }
