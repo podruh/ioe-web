@@ -2,8 +2,8 @@
 <html lang="cs">
 	<head>
 		<meta charset="utf-8">
-		<title>NAG IoE Meteo</title>
-		<meta name="David Podroužek" content="SitePoint">
+		<title>py_flavor Meteostanice</title>
+		<meta name="David Podroužek" content="Údaje posílané z několika senzorů na našem RaspberryPi">
 		<!--[if lt IE 9]>
 	  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 	  <![endif]-->
@@ -15,19 +15,19 @@
 	<body>
 		<header>
 			<h1>
-				NAG IoE Meteostanice
+				py_flavor Meteostanice
 			</h1>
 		</header>
-		<main>
-			<div id="content">
-      
+		<main>    
 				<div id="mainChart">        
 					<div>
 					<h2>Souhrn</h2>
              <div id="range">
-                <select id="dateSelect">
-                    <option>Datum</option>
+             <form>
+                <select id="dateSelect" onchange="ChangeDate()">
+              
                 </select>
+              </form>
              </div>
 						<canvas id="mainChartCanvas"></canvas>
             <div id="chartjs-tooltip"></div>
@@ -36,7 +36,7 @@
 				<hr>
 				<div id="singleCharts">
 					<div class="smallChart">
-						<h2>1-wire teploměr</h2>
+						<h2>BH1750 teploměr</h2>
 						<canvas id="temp1ChartCanvas"></canvas>
 					</div>
 					<div class="smallChart">
@@ -47,9 +47,7 @@
 						<h2>DHT11 vlhkost</h2>
 						<canvas id="humidityChartCanvas"></canvas>
 					</div>
-				</div>		
-			</div>
-			
+				</div>					
 		</main>
 	</body>
 </html>

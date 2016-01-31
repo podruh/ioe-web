@@ -22,7 +22,7 @@ $temp1 = $_GET['temp1'];
 $temp2 = $_GET['temp2'];
 $humidity = $_GET['humidity'];
 $pwd = $_GET['pwd'];
-$hash = "";//zde je vložen hash, který generuje RPi
+$hash = "";
 
 echo $pwd;
 echo "<br>";
@@ -56,7 +56,7 @@ $json = json_decode(file_get_contents($file), true);
  {
   $json["Date"][] = date("d.m.y");
   $json["Hour"][] = date("H:i");
-  echo json_encode($json);                        //pokud souvor station_data.json neexistuje, skript vytvoří nový
+  echo json_encode($json);
   $fp = fopen('station_data.json', 'w+');
   fwrite($fp, json_encode($json));
   fclose($fp);
