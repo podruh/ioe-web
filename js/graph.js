@@ -3,7 +3,9 @@
   });
 
   dataObject.complete(function(data) {
-      chartData = JSON.parse(JSON.stringify(data["responseJSON"], null, "\t"), true);
+      var chartData = JSON.parse(JSON.stringify(data["responseJSON"], null, "\t"), true);
+
+
 
       Chart.defaults.global.pointHitDetectionRadius = 1;
       Chart.defaults.global.customTooltips = function(tooltip) {
@@ -36,11 +38,11 @@
           });
       };
 
-      var mainChartData = {
+      window.mainChartData = {
 
-          labels: chartData.Date,
+          labels: chartData.Hour,
           datasets: [{
-              label: "Teploměr 1",
+              label: "1-wire teploměr",
               fillColor: "rgba(253, 0, 6,0.2)",
               strokeColor: "rgba(253, 0, 6,1)",
               pointColor: "rgba(253, 0, 6,1)",
@@ -49,7 +51,7 @@
               pointHighlightStroke: "rgba(220,220,220,1)",
               data: chartData.Temp1
           }, {
-              label: "Teploměr 2",
+              label: "DHT11 teploměr",
               fillColor: "rgba(255, 113, 0,0.2)",
               strokeColor: "rgba(255, 113, 0,1)",
               pointColor: "rgba(255, 113, 0,1)",
@@ -58,7 +60,7 @@
               pointHighlightStroke: "rgba(151,187,205,1)",
               data: chartData.Temp2
           }, {
-              label: "Vhkoměr",
+              label: "DHT11 vlhkoměr",
               fillColor: "rgba(209, 0, 123,0.2)",
               strokeColor: "rgba(209, 0, 123,1)",
               pointColor: "rgba(209, 0, 123,1)",
@@ -70,40 +72,51 @@
       }
       console.log(mainChartData);
       
-      var temp1Data = new Object();                    
+      window.temp1Data = new Object();                    
       temp1Data.labels = mainChartData.labels;  
       temp1Data.datasets = new Array(mainChartData.datasets[0]);           
       
-      var temp2Data = new Object();                      
+      window.temp2Data = new Object();                      
       temp2Data.labels = mainChartData.labels;
       temp2Data.datasets = new Array(mainChartData.datasets[1]);
       
-      var humiData = new Object();                      
+      window.humiData = new Object();                      
       humiData.labels = mainChartData.labels;
       humiData.datasets = new Array(mainChartData.datasets[2]);
       
-      var ctx = document.getElementById("mainChartCanvas").getContext("2d");
+      window.ctx = document.getElementById("mainChartCanvas").getContext("2d");
       window.myLine = new Chart(ctx).Line(mainChartData, {
           responsive: true,
+          pointDot : false,
           multiTooltipTemplate: "<%= datasetLabel %> - <%= value %>",
+          pointHitDetectionRadius : 2
+
       })
                       
-      var ctx1 = document.getElementById("temp1ChartCanvas").getContext("2d");
+      window.ctx1 = document.getElementById("temp1ChartCanvas").getContext("2d");
       window.myLine = new Chart(ctx1).Line(temp1Data, {
           responsive: true,
-          multiTooltipTemplate: "<%= datasetLabel %> - <%= value %>",
+          pointDot : false,
+          scaleShowLabels: false, 
+          pointHitDetectionRadius : 7        
       })
       
-      var ctx2 = document.getElementById("temp2ChartCanvas").getContext("2d");
+      window.ctx2 = document.getElementById("temp2ChartCanvas").getContext("2d");
       window.myLine = new Chart(ctx2).Line(temp2Data, {
           responsive: true,
-          multiTooltipTemplate: "<%= datasetLabel %> - <%= value %>",
+          pointDot : false,
+          scaleShowLabels: false,
+          pointHitDetectionRadius : 7          
       })
       
-      var ctx3 = document.getElementById("humidityChartCanvas").getContext("2d");
+      window.ctx3 = document.getElementById("humidityChartCanvas").getContext("2d");
       window.myLine = new Chart(ctx3).Line(humiData, {
-          responsive: true,                    
-          multiTooltipTemplate: "<%= datasetLabel %> - <%= value %>",
+          responsive: true,       
+          pointDot : false,
+          scaleShowLabels: false,
+          pointHitDetectionRadius : 7        
       })
       
   });
+      var list = document.getElementById("dateSelect");
+      list.options.remove(0);
