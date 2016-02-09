@@ -22,7 +22,8 @@ $temp1 = $_GET['temp1'];
 $temp2 = $_GET['temp2'];
 $humidity = $_GET['humidity'];
 $pwd = $_GET['pwd'];
-$hash = "";
+$pass = "";
+$hash = hash('', $pass); 
 
 echo $pwd;
 echo "<br>";
