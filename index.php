@@ -34,7 +34,7 @@
 				<hr>
 				<div id="singleCharts">
 					<div class="smallChart">
-						<h2>BH1750 teploměr</h2>
+						<h2>DS18B20 teploměr</h2>
 						<canvas id="temp1ChartCanvas"></canvas>
 					</div>
 					<div class="smallChart">

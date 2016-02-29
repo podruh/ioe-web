@@ -35,25 +35,24 @@ if($pwd == $hash)
 $file = "station_data.json";
 $json = json_decode(file_get_contents($file), true);
 
- if($temp1 != null)
- {
-  $json["Temp1"][] = $temp1;
-  echo $temp1;
-  echo "<br>";
- }
  if($temp2 != null)
  {
   $json["Temp2"][] = $temp2;
   echo $temp2;
   echo "<br>";
  }
+
+  $json["Temp1"][] = $temp1;
+  echo $temp1;
+  echo "<br>";
+
  if($humidity != null)
  {
   $json["Humidity"][] = $humidity;
   echo $humidity;
   echo "<br>";
  }
- if($temp1 != null && $temp2 != null && $humidity != null)
+ if($temp2 != null  && $humidity != null)
  {
   $json["Date"][] = date("d.m.y");
   $json["Hour"][] = date("H:i");
